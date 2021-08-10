@@ -5,8 +5,8 @@ import (
 )
 
 func TestLongestPalindrome(t *testing.T) {
-	t1 := "(()())"
-	res := longestValidParentheses(t1)
+
+	res := isMatch("aa", "*")
 	t.Log(res)
 
 }
