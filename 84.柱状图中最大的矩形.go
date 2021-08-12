@@ -1,4 +1,12 @@
-package main
+/*
+ * @lc app=leetcode.cn id=84 lang=golang
+ *
+ * [84] 柱状图中最大的矩形
+ */
+// 暴力算法： 枚举可能矩形的高度或者高度可以暴力得出结果。
+//
+
+// @lc code=start
 
 func largestRectangleArea(heights []int) int {
 	n := len(heights)
@@ -91,3 +99,6 @@ func largestRectangleArea(heights []int) int {
 
 	return res
 }
+
+// @lc code=end
+
