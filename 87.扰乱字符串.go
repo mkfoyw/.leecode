@@ -1,5 +1,3 @@
-package main
-
 /*
  * @lc app=leetcode.cn id=87 lang=golang
  *
@@ -32,6 +30,7 @@ func isScramble(s1 string, s2 string) bool {
 
 	var dfs func(i1, i2, length int) int8
 	dfs = func(p1, p2, length int) int8 {
+		//结果已经被计算
 		if dp[p1][p2][length] != -1 {
 			return dp[p1][p2][length]
 		}

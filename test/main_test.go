@@ -5,8 +5,8 @@ import (
 )
 
 func TestLongestPalindrome(t *testing.T) {
-	t1 := []int{2, 1, 5, 6, 2, 3}
-	res := largestRectangleArea(t1)
+	s1 := "ccabcbabcbabbbbcbb"
+	s2 := "bbbbabccccbbbabcba"
+	res := isScramble(s1, s2)
 	t.Log(res)
-
 }

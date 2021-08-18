@@ -6,7 +6,11 @@
 // 暴力算法： 枚举可能矩形的高度或者高度可以暴力得出结果。
 //
 //
-//
+// 在枚举高度的方法
+// 首先我们悬着以选择某一个的柱子 i 的高度作为 h = heights[i]
+// 然后向左寻在第一个高度小于 h 的柱子 j
+// 然后向右寻找第一个高度小于 h 的柱子 k
+// 这样在 j 和 k 之间的柱子都大于等于  h
 
 // @lc code=start
 
@@ -16,18 +20,16 @@ func largestRectangleArea(heights []int) int {
 		return 0
 	}
 
-	max := func(a, b int) int {
-		if a > b {
-			return a
-		}
-		return b
+	left := make([]int, n)
+	right := make([]int, n)
+	stack := []int{}
+	for i := 0; i < n; i++ {
+		right[i] = n
 	}
 
-	//从i开始， 从右往左找到第一个小于 height[i]的矩形编号
-	left := make([]int, n, n)
-	stack := make([]int, 0)
 	for i := 0; i < n; i++ {
 		for len(stack) > 0 && heights[stack[len(stack)-1]] >= heights[i] {
+			right[stack[len(stack)-1]] = i
 			stack = stack[:len(stack)-1]
 		}
 
@@ -40,26 +42,16 @@ func largestRectangleArea(heights []int) int {
 		stack = append(stack, i)
 	}
 
-	right := make([]int, n, n)
-	stack = stack[:0]
-	for i := n - 1; i >= 0; i-- {
-		for len(stack) > 0 && heights[stack[len(stack)-1]] >= heights[i] {
-			stack = stack[:len(stack)-1]
+	max := func(a, b int) int {
+		if a < b {
+			return b
 		}
-
-		if len(stack) == 0 {
-			right[i] = n
-		} else {
-			right[i] = stack[len(stack)-1]
-		}
-		stack = append(stack, i)
+		return a
 	}
-
 	res := 0
 	for i := 0; i < n; i++ {
 		res = max(res, (right[i]-left[i]-1)*heights[i])
 	}
-
 	return res
 }
 
