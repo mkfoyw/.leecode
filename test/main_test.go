@@ -5,8 +5,12 @@ import (
 )
 
 func TestLongestPalindrome(t *testing.T) {
-	s1 := "ccabcbabcbabbbbcbb"
-	s2 := "bbbbabccccbbbabcba"
-	res := isScramble(s1, s2)
+	triange := [][]int{
+		{2},
+		{3, 4},
+		{6, 5, 7},
+		{4, 1, 8, 3},
+	}
+	res := minimumTotal(triange)
 	t.Log(res)
 }

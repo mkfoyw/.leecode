@@ -1,5 +1,3 @@
-package main
-
 /*
  * @lc app=leetcode.cn id=120 lang=golang
  *
@@ -28,18 +26,13 @@ func minimumTotal(triangle [][]int) int {
 		}
 	}
 
-	for i := 0; i < row; i++ {
-		for j := 0; j <= i; j++ {
-			if i == 0 {
-				dp[i][j] = triangle[i][j]
-			} else {
-				if j == 0 {
-					dp[i][j] = dp[i-1][j] + triangle[i][j]
-				} else {
-					dp[i][j] = min(dp[i-1][j], 1) + triangle[i][j]
-				}
-			}
+	dp[0][0] = triangle[0][0]
+	for i := 1; i < row; i++ {
+		dp[i][0] = dp[i-1][0] + triangle[i][0]
+		for j := 1; j < i; j++ {
+			dp[i][j] = min(dp[i-1][j], dp[i-1][j-1]) + triangle[i][j]
 		}
+		dp[i][i] = dp[i-1][i-1] + triangle[i][i]
 	}
 
 	res := dp[row-1][0]
@@ -50,3 +43,4 @@ func minimumTotal(triangle [][]int) int {
 }
 
 // @lc code=end
+
