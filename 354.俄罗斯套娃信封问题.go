@@ -1,6 +1,3 @@
-package main
-
-import "sort"
 
 /*
  * @lc app=leetcode.cn id=354 lang=golang
