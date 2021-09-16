@@ -6,8 +6,6 @@ import (
 
 func TestLongestPalindrome(t *testing.T) {
 
-	res := maximalSquare([][]byte{
-		{'0', '1'},
-	})
+	res := maxNumber([]int{6, 7}, []int{6, 0, 4}, 5)
 	t.Log(res)
 }

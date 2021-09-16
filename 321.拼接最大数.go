@@ -1,4 +1,4 @@
-package main
+
 
 /*
  * @lc app=leetcode.cn id=321 lang=golang
@@ -72,6 +72,31 @@ func maxRes(a []int, b []int) []int {
 
 }
 
+// 在进行合并的时候， 如果两个数组的第一个元素不同，则选择最大的。
+// 如果相同， 就会比较下一个元素， 知道两个元素不同。
+// 这也就是选择字典顺序最大的。
+func lexicCompare(a []int, b []int) bool {
+	na, nb := len(a), len(b)
+
+	i, j := 0, 0
+	for i < na && j < nb {
+		if a[i] > b[j] {
+			return true
+		}
+		if a[i] < b[j] {
+			return false
+		}
+		i++
+		j++
+	}
+
+	if na > nb {
+		return true
+	} else {
+		return false
+	}
+}
+
 func merge(a []int, b []int) []int {
 	na, nb := len(a), len(b)
 	if na == 0 {
@@ -84,21 +109,12 @@ func merge(a []int, b []int) []int {
 	res := []int{}
 	i, j := 0, 0
 	for i < na || j < nb {
-		if i == na {
-			res = append(res, b[j:]...)
-			break
-		}
-		if j == nb {
-			res = append(res, a[i:]...)
-			break
-		}
-
-		if a[i] < b[j] {
-			res = append(res, b[j])
-			j++
-		} else {
+		if lexicCompare(a[i:], b[j:]) {
 			res = append(res, a[i])
 			i++
+		} else {
+			res = append(res, b[j])
+			j++
 		}
 	}
 	return res
