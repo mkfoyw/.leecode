@@ -6,6 +6,6 @@ import (
 
 func TestLongestPalindrome(t *testing.T) {
 
-	res := maxEnvelopes([][]int{{5, 4}, {6, 4}, {6, 7}, {2, 3}})
+	res := combinationSum([]int{2, 3, 6, 7}, 7)
 	t.Log(res)
-}
+} 
