@@ -6,6 +6,7 @@ import (
 
 func TestLongestPalindrome(t *testing.T) {
 
-	res := combinationSum([]int{2, 3, 6, 7}, 7)
+	res := isSubsequence("twn",
+		"xxxxxxxtxxxxxxxxwxxxxn")
 	t.Log(res)
-} 
+}

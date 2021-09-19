@@ -1,50 +1,43 @@
 package main
 
-import "fmt"
-
 /*
- * @lc app=leetcode.cn id=39 lang=golang
+ * @lc app=leetcode.cn id=392 lang=golang
  *
- * [39] 组合总和
+ * [392] 判断子序列
  */
 
 // @lc code=start
-//
-func combinationSum(candidates []int, target int) [][]int {
-	n := len(candidates)
-	if n == 0 {
-		return [][]int{}
+
+// dp[i][j]： 表示字符串s前i个字符串是否是字符串t前j个字符串的子序列
+func isSubsequence(s string, t string) bool {
+	n, m := len(s), len(t)
+	if n == 0 || m == 0 {
+		if n == 0 {
+			return true
+		}
+		if m == 0 {
+			return false
+		}
 	}
 
-	res := [][]int{}
-
-	var dfs func(int, int)
-
-	cur := []int{}
-	dfs = func(pos, target int) {
-		fmt.Printf("pos : %d, target: %d\n", pos, target)
-		if target < 0 || pos >= n {
-			return
-		}
-		if target == 0 {
-			tmp := make([]int, len(cur))
-			copy(tmp, cur)
-			res = append(res, cur)
-			return
-		}
-
-		curlen := len(cur)
-		// 不选择
-		dfs(pos+1, target)
-		// 选择
-		for i := 1; i*candidates[pos] <= target; i++ {
-			cur = append(cur, candidates[pos])
-			dfs(i+1, target-i*candidates[pos])
-		}
-		cur = cur[:curlen]
+	dp := make([][]bool, n+1)
+	for i := 0; i <= n; i++ {
+		dp[i] = make([]bool, m+1)
 	}
-	dfs(0, target)
-	return res
+	for i := 0; i <= m; i++ {
+		dp[0][i] = true
+	}
+
+	for i := 1; i <= n; i++ {
+		for j := i; j <= m; j++ {
+			if s[i-1] == t[j-1] {
+				dp[i][j] = dp[i-1][j-1] || dp[i][j-1]
+			} else {
+				dp[i][j] = dp[i][j-1]
+			}
+		}
+	}
+	return dp[n][m]
 }
 
 // @lc code=end
