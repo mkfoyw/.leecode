@@ -6,6 +6,7 @@
 
 // @lc code=start
 // 整除具有传递性 a|b, b|c -> a |c
+
 func largestDivisibleSubset(nums []int) []int {
 	n := len(nums)
 	if n == 0 {
