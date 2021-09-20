@@ -6,8 +6,49 @@
 
 // @lc code=start
 
-// 双指针法
+//在使用双指针法， 我们会花费大量的时间在寻在与 s[i] 相匹配的字符串t[j]
+// 因此我们定义这样一个表格 f[i][j] 表示在字符串t[i]以后第一个出现字符 j(a <=j<=z)的位置
+
 func isSubsequence(s string, t string) bool {
+	ns, nt := len(s), len(t)
+	if ns == 0 || nt == 0 {
+		if ns == 0 {
+			return true
+		}
+
+		if ns != 0 {
+			return false
+		}
+	}
+
+	f := make([][26]int, nt+1)
+
+	for i := 0; i < 26; i++ {
+		f[nt][i] = nt
+	}
+
+	for i := nt - 1; i >= 0; i-- {
+		for j := 0; j < 26; j++ {
+			if t[i] == byte('a'+j) {
+				f[i][j] = i
+			} else {
+				f[i][j] = f[i+1][j]
+			}
+		}
+	}
+
+	add := 0
+	for i := 0; i < ns; i++ {
+		if f[add][int(s[i]-'a')] == nt {
+			return false
+		}
+		add = f[add][int(s[i]-'a')] + 1
+	}
+	return true
+}
+
+// 双指针法
+func isSubsequence2(s string, t string) bool {
 	n, m := len(s), len(t)
 	if n == 0 || m == 0 {
 		if n == 0 {
