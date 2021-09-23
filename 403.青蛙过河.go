@@ -5,6 +5,8 @@
  */
 
 // @lc code=start
+
+// dp[cur][step]： 表示在第 cur 个存在石头的格子步长为 step 时能否跳到终点
 func canCross(stones []int) bool {
 	n := len(stones)
 	if n == 0 {
