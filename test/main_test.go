@@ -6,6 +6,6 @@ import (
 
 func TestLongestPalindrome(t *testing.T) {
 
-	res := numberOfArithmeticSlices([]int{7, 7, 7, 7, 7})
+	res := findRotateSteps("gedd", "gd")
 	t.Log(res)
 }

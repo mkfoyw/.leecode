@@ -1,7 +1,3 @@
-package main
-
-import "fmt"
-
 /*
  * @lc app=leetcode.cn id=514 lang=golang
  *
@@ -24,9 +20,7 @@ func findRotateSteps(ring string, key string) int {
 
 	dfs = func(pr, pk int) int {
 
-		//fmt.Printf("pr = %d, pk = %d\n", pr, pk)
 		if _, ok := dp[pr][pk]; ok {
-			fmt.Printf("Fuck dp[%d][%d]=%d", pr, pk, dp[pr][pk])
 			return dp[pr][pk]
 		}
 
@@ -35,7 +29,7 @@ func findRotateSteps(ring string, key string) int {
 			step += 1
 			pk++
 		}
-		fmt.Printf("FUCK  pk  %d\n", pk)
+
 		if pk == nk {
 			return step
 		}
@@ -56,7 +50,6 @@ func findRotateSteps(ring string, key string) int {
 		step += min(t1, t2) + 1
 
 		dp[pr][pk] = step
-		fmt.Print("I am OUT")
 		return dp[pr][pk]
 	}
 
@@ -72,3 +65,4 @@ func min(a, b int) int {
 }
 
 // @lc code=end
+
