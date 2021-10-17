@@ -1,7 +1,3 @@
-package main
-
-import "math"
-
 /*
  * @lc app=leetcode.cn id=1130 lang=golang
  *
@@ -44,7 +40,7 @@ func mctFromLeafValues(arr []int) int {
 		for k := l; k < r; k++ {
 
 			dp[l][r] = min(dp[l][r], dfs(l, k)+dfs(k+1, r)+mn[l][k]*mn[k+1][r])
-			mn[l][r] = min(mn[l][k], mn[k+1][r])
+			mn[l][r] = max(mn[l][k], mn[k+1][r])
 
 		}
 		return dp[l][r]
@@ -60,4 +56,12 @@ func min(a, b int) int {
 	return b
 }
 
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
 // @lc code=end
+

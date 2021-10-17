@@ -6,6 +6,6 @@ import (
 
 func TestLongestPalindrome(t *testing.T) {
 
-	res := findRotateSteps("gedd", "gd")
+	res := mctFromLeafValues([]int{6, 2, 4})
 	t.Log(res)
 }
